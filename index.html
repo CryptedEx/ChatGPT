@@ -151,15 +151,15 @@
                 chatHistory.push({ role: 'user', content: userInput });
 
                 // Make a request to the ChatGPT API with the conversation history
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                const response = await fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + apiKey
                     },
                     body: JSON.stringify({
-                        model: 'gpt-3.5-turbo',
-                        messages: [...chatHistory] // Include the conversation history in the API request
+                        prompt: 'Chat with the AI:',
+                        messages: chatHistory
                     })
                 });
 
