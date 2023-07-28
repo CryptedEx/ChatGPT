@@ -96,7 +96,8 @@
     </div>
 
     <script>
-        let apiKey = prompt("Please enter your ChatGPT API key:");
+        // Replace the prompt with your ChatGPT API key directly if desired
+        const apiKey = prompt("Please enter your ChatGPT API key:");
         if (!apiKey) {
             alert("You need to enter your API key for the chat to work. Please refresh the page and try again.");
         } else {
@@ -142,11 +143,11 @@
                 showTypingIndicator();
 
                 // Make a request to the ChatGPT API
-                const response = await fetch('https://api.openai.com/v1/engines/gpt-3.5-turbo/completions', {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
+                        'Authorization': 'Bearer ' + apiKey
                     },
                     body: JSON.stringify({
                         model: 'gpt-3.5-turbo',
@@ -166,9 +167,6 @@
                 hideTypingIndicator();
 
                 const data = await response.json();
-
-                // Simulate typing delay (1 second)
-                await new Promise(resolve => setTimeout(resolve, 1000));
 
                 // Display the bot's response in the chat container
                 const botMessage = data.choices[0].message.content;
