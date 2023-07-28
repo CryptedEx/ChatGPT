@@ -152,6 +152,10 @@
                         model: 'gpt-3.5-turbo',
                         messages: [
                             {
+                                role: 'system',
+                                content: 'You are a helpful assistant.'
+                            },
+                            {
                                 role: 'user',
                                 content: userInput
                             }
@@ -162,6 +166,9 @@
                 hideTypingIndicator();
 
                 const data = await response.json();
+
+                // Simulate typing delay (1 second)
+                await new Promise(resolve => setTimeout(resolve, 1000));
 
                 // Display the bot's response in the chat container
                 const botMessage = data.choices[0].message.content;
