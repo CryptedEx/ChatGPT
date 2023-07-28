@@ -150,6 +150,9 @@
                 this.style.height = 'auto';
                 this.style.height = this.scrollHeight + 'px';
             });
+
+            // Add this script to handle the send button click
+            document.querySelector('.send-button').addEventListener('click', sendMessage);
         }
     </script>
 </body>
